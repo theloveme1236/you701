@@ -309,15 +309,17 @@ def like4like_login_instgram():
             except:
                 pass
             time.sleep(10)
-            
-            email_2 = cookies_totel.split('instagram_cookies_')[-1].split('_pas_')[0]
-            password_2 = cookies_totel.split('_pas_')[-1].split('_n')[0]
-            print(email_2)
-            driver.find_element(By.NAME, 'username').send_keys(email_2)
-            time.sleep(1)
-            driver.find_element(By.NAME, 'password').send_keys(password_2)
-            time.sleep(1)
-            driver.find_element(By.NAME, 'password').send_keys(Keys.RETURN)
+            try:
+                email_2 = cookies_totel.split('instagram_cookies_')[-1].split('_pas_')[0]
+                password_2 = cookies_totel.split('_pas_')[-1].split('_n')[0]
+                print(email_2)
+                driver.find_element(By.NAME, 'username').send_keys(email_2)
+                time.sleep(1)
+                driver.find_element(By.NAME, 'password').send_keys(password_2)
+                time.sleep(1)
+                driver.find_element(By.NAME, 'password').send_keys(Keys.RETURN)
+            except Exception as s:
+                print(s)
             time.sleep(5)
             driver.get("https://www.instagram.com/direct/inbox/")
             time.sleep(5)
@@ -389,8 +391,9 @@ def like4like_login_instgram():
                 '''
                     
         else:
-            print('errroo')
-            print(driver.current_url)
+            pass
+            #print('errroo')
+            #print(driver.current_url)
             #sys.exit()
                 
 def limeit_all_ike4like():
@@ -910,6 +913,9 @@ def instagram_follow_erro():
 
     if current_url == 'https://www.like4like.org/user/bonus-page.php' or  current_url == 'https://www.like4like.org/user/bonus-page.php/':
         print('erro_https://www.like4like.org/user/bonus-page.php')
+        print('erro_https://www.like4like.org/user/bonus-page.php')
+        print('erro_https://www.like4like.org/user/bonus-page.php')
+        print('erro_https://www.like4like.org/user/bonus-page.php')
         ##result > div > a:nth-child(8)
         ##result > div > a:nth-child(6)
         
@@ -921,7 +927,7 @@ def instagram_follow_erro():
                 break
             except:
                 print('errobonus-page.php')
-        input('erro_https://www.like4like.org/user/bonus-page.php')
+        #input('erro_https://www.like4like.org/user/bonus-page.php')
 def instagram_follow():
     global driver
     my_list_like = []
