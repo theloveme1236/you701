@@ -35,46 +35,53 @@ def like3like_login_first():
     for cookies_totel in os.listdir(os.getcwd()):
         cookies_totel_1 = cookies_totel.split('_cookies')[0]
         if cookies_totel_1=='like':
-            email = cookies_totel.split('like_cookies_')[-1].split('.pkl')[0]
-            print(email)
-            password = '1234thelove'
-            driver.get("https://www.like4like.org/login/")
-            page_height = driver.execute_script("return document.body.scrollHeight;")
-            driver.set_window_size(1920, page_height)
-            time.sleep(2)
-            driver.find_element(By.ID, 'username').send_keys(email)
-            time.sleep(2)
-            driver.find_element(By.ID, 'password').send_keys(password)
-            time.sleep(2)
-            driver.find_element(By.ID, 'password').send_keys(Keys.ENTER)
-            time.sleep(1)
+            driver.get("https://www.like4like.org/#social-media-platform-list")
+            cookies = pickle.load(open('{}'.format(cookies_totel), "rb"))
+            for cookie in cookies:
+                try:
+                    driver.add_cookie(cookie)
+                except Exception as ss:
+                    print(ss)
+                    continue
             driver.get("https://www.like4like.org/user/")
             time.sleep(10)
             current_url = driver.current_url
             if current_url=='https://www.like4like.org/user/':
-                print(current_url)
-                driver.get("https://www.like4like.org/#social-media-platform-list")
-                time.sleep(1)
-                cookies_add = "like_cookies_{}.pkl".format(email)
-                pickle.dump(driver.get_cookies(), open("like_cookies_{}.pkl".format(email), "wb"))
-
+                print('login_cookies')
             else:
-                print('else')
-                driver.get("https://www.like4like.org/#social-media-platform-list")
-                cookies = pickle.load(open('{}'.format(cookies_totel), "rb"))
-                for cookie in cookies:
-                    try:
-                        driver.add_cookie(cookie)
-                    except Exception as ss:
-                        print(ss)
-                        continue
-                driver.get("https://www.like4like.org/user/")
+                print('false_cookies')
+                email = cookies_totel.split('like_cookies_')[-1].split('.pkl')[0]
+                print(email)
+                password = '1234thelove'
+                driver.get("https://www.like4like.org/login/")
+                time.sleep(2)
+                driver.get("https://www.like4like.org/login/")
+                time.sleep(2)
+                page_height = driver.execute_script("return document.body.scrollHeight;")
+                driver.set_window_size(1920, page_height)
+                time.sleep(2)
+                driver.find_element(By.ID, 'username').send_keys(email)
+                time.sleep(2)
+                driver.find_element(By.ID, 'password').send_keys(password)
+                time.sleep(2)
+                driver.find_element(By.ID, 'password').send_keys(Keys.ENTER)
                 time.sleep(1)
+                driver.get("https://www.like4like.org/user/")
+                time.sleep(10)
                 current_url = driver.current_url
                 if current_url=='https://www.like4like.org/user/':
-                    print('login_cookies')
+                    print(current_url)
+                    driver.get("https://www.like4like.org/#social-media-platform-list")
+                    time.sleep(1)
+                    cookies_add = "like_cookies_{}.pkl".format(email)
+                    pickle.dump(driver.get_cookies(), open("like_cookies_{}.pkl".format(email), "wb"))
                 else:
-                    print('false_cookies')
+                    print('false_login')
+                    print('false_login')
+                    print('false_login')
+                    break
+
+
 
 def check_driver_open():
     try:
