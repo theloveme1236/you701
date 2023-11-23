@@ -213,7 +213,7 @@ def follow_tiktok():
                                     totel_mail_new = int(700)+int(totel_mail) 
                                     print(totel_mail_new)
                                     # Set your GitHub access token
-                                    access_token = "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"
+                                    access_token = "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"
 
                                     # Set the repository name
                                     repository_name = "you{}".format(totel_mail_new)
